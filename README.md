@@ -1,2 +1,2 @@
 # S.I.G.T
-Sistema integrado de gestión de torneo 
+Sistema integrado de gestión de torneos 
