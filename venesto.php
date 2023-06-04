@@ -7,5 +7,4 @@ echo 'Soy Gaston';
 echo 'lo que sea'
 echo 'lo q sea 2.0';
 echo "blabla";
-
 ?>
