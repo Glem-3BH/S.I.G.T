@@ -1,0 +1,12 @@
+h1{
+  display: flex;
+  justify-content: center;
+  font-family: 'Poppins';
+}
+
+.menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
