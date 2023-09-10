@@ -3,11 +3,10 @@
 
     class Competidor extends Conexion {
         private $ci;
-        private $idE;
         private $nombre;
         private $sexo;
         private $fnac;
-        private $edad;
+        private $idE;
         private $conexion;
 
         public function __construct(){
@@ -15,18 +14,17 @@
             $this->conexion = $this->conexion->connect();
         }
 
-        public function insertarCompetidor(string $ci, int $idE, string $nombre, string $sexo, string $fnac, string $edad){
+        public function insertarCompetidor(string $ci, string $nombre, string $sexo, string $fnac, int $idE){
 
             $this->ci = $ci;
-            $this->idE = $idE;
             $this->nombre = $nombre;
             $this->sexo = $sexo;
             $this->fnac = $fnac;
-            $this->edad = $edad;
+            $this->idE = $idE;
 
-            $sql = "INSERT INTO competidor(CI,IdE,nombre,sexo,Fnac,Edad) VALUES(?,?,?,?,?,?)";
+            $sql = "INSERT INTO competidor(CI,Nombre,Sexo,F_Nac,IdEsc) VALUES(?,?,?,?,?)";
             $insert = $this->conexion->prepare($sql);
-            $arrData = array($this->ci,$this->idE,$this->nombre,$this->sexo,$this->fnac,$this->edad);
+            $arrData = array($this->ci,$this->nombre,$this->sexo,$this->fnac,$this->idE);
             $resInsert = $insert->execute($arrData);
             $idInsert = $this->conexion->lastInsertId();
             return $idInsert;
