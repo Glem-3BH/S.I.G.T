@@ -23,9 +23,9 @@ class ListarCompetidores extends Conexion {
             exit;
         }
         echo '<table border=1>';
-        echo '<tr><th>Cedula</th><th>Escuela</th><th>Nombre</th><th>Genero</th><th>F. Nacimiento</th><th>Categoria</th></tr>';
+        echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th></tr>';
         foreach ($insert as $row){
-            echo '<tr><td>'.$row['CI'].'</td><td>'.$row['IdE'].'</td><td>'.$row['nombre'].'</td><td>'.$row['sexo'].'</td><td>'.$row['Fnac'].'</td><td>'.$row['Edad'].'</td></tr>';
+            echo '<tr><td>'.$row['CI'].'</td><td>'.$row['Nombre'].'</td><td>'.$row['Sexo'].'</td><td>'.$row['F_Nac'].'</td><td>'.$row['IdEsc'].'</td></tr>';
              
         }
         echo '</table>';

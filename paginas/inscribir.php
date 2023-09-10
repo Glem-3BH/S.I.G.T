@@ -6,12 +6,11 @@ $objetoCompetidor = new Competidor();
 if( isset($_POST["inscribir"])){
 
     $ci=$_POST["ci"];
-    $idE=$_POST["idE"];
     $nombre=$_POST["nombre"];
     $sexo=$_POST["sexo"];
     $fnac=$_POST["fnac"];
-    $edad=$_POST["edad"];
-    $insert = $objetoCompetidor->insertarCompetidor($ci,$idE,$nombre,$sexo,$fnac,$edad);
+    $idE=$_POST["idE"];
+    $insert = $objetoCompetidor->insertarCompetidor($ci,$nombre,$sexo,$fnac,$idE);
 }
 
 ?>
