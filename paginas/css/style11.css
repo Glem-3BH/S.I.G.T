@@ -1,0 +1,157 @@
+body{
+    min-height: 100vh;
+}
+
+.icono{
+    height: 70px;
+    width: 70px;
+}
+
+.carousel{
+    margin-top: -10px;
+    margin-left: -400px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    color: #D14242;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.boton-grande {
+    margin-top: 50px;
+    font-size: 28px;
+    padding: 20px 40px;
+    background-color: #D14242;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+footer{
+    padding: 15px;
+    background-color: #f8f8f8;
+    text-align: center;
+    font-size: 20px;
+    align-self: flex-end;
+    min-width: 100%;
+}
+
+.boton-grande:hover{
+    background-color: red;
+}
+
+h1{
+    padding: 10px;
+    color:#D14242;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.import{
+    border-radius: 100px;
+    background-color: #D14242;
+    color: #f8f8f8;
+    margin: auto;
+    display: block;
+}
+
+select {
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #D14242;
+}
+
+select:hover{
+    background-color: red;
+}
+
+.comp{
+    display: flex;
+    justify-content: right;
+}
+
+.sel{
+    display: flex;
+    justify-content: left;
+}
+
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+th {
+    background-color: #D14242;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+.ind{
+    position: absolute;
+    display: flex;
+    justify-content: left;
+}
+
+.select{
+    margin-left: 420px;
+    margin-top: 15px;
+}
+
+.sel{
+    position: absolute;
+}
+
+.total{
+    margin-left: 10px;
+    margin-top: 80px;
+}
+
+.kata{
+    width: 150px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #D14242;
+}
+
+.iniciar{
+    width: 150px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #D14242;
+    margin-left: 43%;
+    margin-top: 50px;
+}
