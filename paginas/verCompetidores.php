@@ -45,6 +45,6 @@ if(isset($_POST["cerrar"])){
         </div>
       </nav>
 </header>
-<?php $listar = $objetoCompetidor->listar();?>
-</body>
+  <?php $listar = $objetoCompetidor->listar();?>
+
 </html>
