@@ -29,6 +29,7 @@
             $idInsert = $this->conexion->lastInsertId();
             return $idInsert;
         }
+        
 
     }
 
