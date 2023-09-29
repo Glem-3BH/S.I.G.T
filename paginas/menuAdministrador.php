@@ -137,7 +137,7 @@ if(isset($_POST["cerrar"])){
     <a href="inscribir.php"><button class="boton-grande">Ingresar competidor</button></a>
     <a href="crearcamp.html"><button class="boton-grande">Crear nuevo campeonato</button></a>
     <a href="listakatas.html"><button class="boton-grande">Ver lista de katas</button></a>
-    <a href="ingescuela.html"><button class="boton-grande">Ingresar nueva escuela</button></a>
+    <a href="ingresarEscuela.php"><button class="boton-grande">Ingresar nueva escuela</button></a>
     <button class="boton-grande">Info del campeonato en curso</button>
     <a href="http://cuk.org.uy/reglamento-de-campeonatos-cuk/"><button class="boton-grande">Reglas de la CUK</button></a>
 </center>
