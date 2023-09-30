@@ -82,8 +82,8 @@ if(isset($_POST["cerrar"])){
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a class="dropdown-item" href="#">Ingresar nueva escuela</a>
-                    <a class="dropdown-item" href="#">Ver escuelas</a>     
+                    <a class="dropdown-item" href="ingresarEscuela.php">Ingresar nueva escuela</a>
+                    <a class="dropdown-item" href="verEscuelas.php">Ver escuelas</a>     
                 </div>
             </div>
         </div>

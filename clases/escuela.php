@@ -40,5 +40,80 @@
             return false;  
         }
     }
+
+    public function listarEscuela(){
+
+        try{
+            $sql = "SELECT * FROM escuela";
+            $insert = $this->conexion->prepare($sql);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+        }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+        }
+        echo '<table border=1>';
+        echo '<tr><th>ID</th><th>Nombre</th><th>Localidad</th><th colspan="2">Acciones</th></tr>';
+        foreach ($insert as $row){
+            echo '<tr>
+                    <td>'.$row['IdEsc'].'</td>
+                    <td>'.$row['Nombre'].'</td>
+                    <td>'.$row['localidad'].'</td>
+                    <td>
+
+                    <a href="eliminarEscuela.php?competidor='.$row['IdEsc'].'">Eliminar</a>
+                        
+                    </td>
+                    <td>
+                    <a href="modificarEscuela.php?id='.$row['IdEsc'].'">Editar</a>
+                    </td>
+                  </tr>';
+             
+        }
+        echo '</table>';
+        
+    }
+
+
+    public function getEscuela($id){
+
+        try{
+            $sql = "SELECT * FROM escuela WHERE IdEsc = :id";
+            $insert = $this->conexion->prepare($sql);
+            $insert->bindParam(':id', $id, PDO::PARAM_INT);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+        }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+        }
+        foreach ($insert as $row){
+            echo '<form action="actualizarEscuela.php" method="GET">
+            <input type="hidden" name="id" value="'.$row['IdEsc'].'">
+            <label >Nombre</label>
+            <input type="text" name="nombre" value="'.$row['Nombre'].'">
+            <label >Localidad</label>
+            <input type="text" name="localidad" value="'.$row['localidad'].'">
+            <input type="submit" name="Ingresar">
+        </form>';
+             
+        }
+        
+    }
+
+    public function setEscuela(string $idEsc, string $nombre, string $localidad){
+
+        $actualizar = "UPDATE escuela set Nombre=:nombre, localidad=:localidad WHERE IdEsc=:IdEsc";
+
+        $stmt = $this->conexion->prepare($actualizar);
+        $stmt->bindParam(':IdEsc', $idEsc, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':localidad', $localidad, PDO::PARAM_STR);
+        $stmt->execute();
+
+    }
+    
 }
 ?>
