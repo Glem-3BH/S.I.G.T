@@ -62,7 +62,7 @@
                     <td>'.$row['localidad'].'</td>
                     <td>
 
-                    <a href="eliminarEscuela.php?competidor='.$row['IdEsc'].'">Eliminar</a>
+                    <a href="eliminarEscuela.php?id='.$row['IdEsc'].'">Eliminar</a>
                         
                     </td>
                     <td>

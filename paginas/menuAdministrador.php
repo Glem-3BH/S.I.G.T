@@ -95,6 +95,7 @@ if(isset($_POST["cerrar"])){
                     Campeonatos
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                  <a class="dropdown-item" href="verTorneos.php">Ver lista de torneos</a>
                   <a class="dropdown-item" href="#">Ver campeonatos en curso</a>
                   <a class="dropdown-item" href="#">Ingresar nuevo campeonato</a>
                   <a class="dropdown-item" href="#">Ingresar kata a competidor</a>
@@ -135,7 +136,7 @@ if(isset($_POST["cerrar"])){
 </div>
 <center>
     <a href="inscribir.php"><button class="boton-grande">Ingresar competidor</button></a>
-    <a href="crearcamp.html"><button class="boton-grande">Crear nuevo campeonato</button></a>
+    <a href="crearTorneo.php"><button class="boton-grande">Crear nuevo campeonato</button></a>
     <a href="listakatas.html"><button class="boton-grande">Ver lista de katas</button></a>
     <a href="ingresarEscuela.php"><button class="boton-grande">Ingresar nueva escuela</button></a>
     <button class="boton-grande">Info del campeonato en curso</button>

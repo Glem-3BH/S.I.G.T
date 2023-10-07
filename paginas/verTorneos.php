@@ -1,5 +1,17 @@
-<?php
-
+<?php 
+session_start();
+include_once("../clases/torneo.php");
+require_once("../clases/login.php");
+$objetoTorneo = new Torneo();
+$objetoLogin = new Login();
+$validar = $_SESSION['administrador'];
+if($validar == null || $validar == ''){
+    session_destroy();
+    header("location: ../index.php");
+}
+if(isset($_POST["cerrar"])){
+    $nuevoDeslogueo = $objetoLogin->cerrarSesion($_SESSION['administrador']);
+}
 
 ?>
 
@@ -13,13 +25,6 @@
 <body>
     <h1>Ver lista de torneos</h1>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>
+    <?php $listar = $objetoTorneo->listarTorneos();?>
 </body>
 </html>
