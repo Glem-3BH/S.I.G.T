@@ -114,6 +114,26 @@
         $stmt->execute();
 
     }
+
+    public function selectDeEscuelas(){
+
+        try{
+            $sql = "SELECT * FROM escuela";
+            $insert = $this->conexion->prepare($sql);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+        }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+        }
+           
+        foreach ($insert as $row){
+            echo '
+            <option value="'.$row['IdEsc'].'">'.$row['Nombre'].' | '.$row['localidad'].'</option>';
+             
+        }
+    }
     
 }
 ?>

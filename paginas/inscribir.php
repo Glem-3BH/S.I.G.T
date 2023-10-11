@@ -3,7 +3,11 @@ session_start();
 require_once("../conexion/conexion.php");
 require_once("../clases/login.php");
 require_once("../clases/ingresarCompetidor.php");
+require_once("../clases/torneo.php");
+require_once("../clases/escuela.php");
 $objetoCompetidor = new Competidor();
+$objetoTorneo = new Torneo();
+$objetoEscuela = new Escuela();
 
 if( isset($_POST["inscribir"])){
 
@@ -12,7 +16,9 @@ if( isset($_POST["inscribir"])){
     $sexo=$_POST["sexo"];
     $fnac=$_POST["fnac"];
     $idE=$_POST["idE"];
-    $insert = $objetoCompetidor->insertarCompetidor($ci,$nombre,$sexo,$fnac,$idE);
+    $idtorneo=$_POST["IdTorneo"];
+    $estado=$_POST["estado"];
+    $insert = $objetoCompetidor->insertarCompetidor($ci,$nombre,$sexo,$fnac,$idE,$idtorneo,$estado);
     echo "<script>window.confirm('Competidor ingresado correctamente')</script>";
 }
 
@@ -76,7 +82,7 @@ if(isset($_POST["cerrar"])){
       
                         <div class="form-outline">
                           <label class="form-label" for="name">Nombre Completo</label>
-                          <input type="text" id="name" class="form-control form-control-lg" name="nombre" />
+                          <input type="text" id="name" class="form-control form-control-lg" name="nombre" required/>
                         </div>
 
       
@@ -88,7 +94,7 @@ if(isset($_POST["cerrar"])){
       
                         <div class="form-outline datepicker w-100">
                           <label for="birthdayDate" class="form-label">Fecha de Nacimiento</label>
-                          <input type="date" class="form-control form-control-lg" id="birthdayDate" name="fnac"/>
+                          <input type="date" class="form-control form-control-lg" id="birthdayDate" name="fnac" required/>
                         </div>
       
                       </div>
@@ -118,13 +124,24 @@ if(isset($_POST["cerrar"])){
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
                           <label class="form-label" for="ci" >Escuela</label>
-                          <input type="number" id="ci" name="idE" class="form-control form-control-lg" />
+                          <select name="idE" required>
+                          <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <label class="form-label" for="ci" >Torneo</label>
+                          <select name="IdTorneo" required>
+                            <?php $listar = $objetoTorneo->selectDeTorneos();?>
+                          </select>
                         </div>
                       </div>
                     </div>
+                      <input type="hidden" name="estado" value="calificar">
                       <input class="btn btn-danger btn-lg" type="submit" value="inscribir" name="inscribir" />
                     </div>
-      
+
                   </form>
 
                 </div>

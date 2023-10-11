@@ -155,3 +155,15 @@ tr:hover {
     margin-left: 43%;
     margin-top: 50px;
 }
+
+.calificar{
+    background-color: #b30000;
+}
+
+.calificando{
+    background-color: #eff868;
+}
+
+.calificado{
+    background-color: #1afd12;
+}

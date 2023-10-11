@@ -166,6 +166,81 @@ class ListarCompetidores extends Conexion {
 
     }
 
+
+    
+    public function listarParaTorneo($id){
+      $competidores = 0;
+      try{
+        $sql = "SELECT * FROM competidor WHERE IdTorneo = :id";
+        $insert = $this->conexion->prepare($sql);
+        $insert->bindParam(':id', $id, PDO::PARAM_INT);
+        $insert2 = $this->conexion->prepare($sql);
+        $insert2->bindParam(':id', $id, PDO::PARAM_INT);
+        $arrData = array($insert);
+        $resInsert = $insert->execute(); 
+        $resInsert = $insert2->execute(); 
+    }catch(PDOException $ex){
+        echo "Ocurrio un error<br>";
+        echo $ex->getMessage();
+        exit;
+    }
+
+    foreach($insert as $row){
+      $competidores = $competidores + 1;
+    }
+
+    if($competidores >= 2 && $competidores <= 3){
+
+      echo '<table border=1>';
+      echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th colspan="2">Acciones</th></tr>';
+      foreach ($insert2 as $row){
+          echo '<tr>
+                  <td>'.$row['CI'].'</td>
+                  <td>'.$row['Nombre'].'</td>
+                  <td>'.$row['Sexo'].'</td>
+                  <td>'.$row['F_Nac'].'</td>
+                  <td>'.$row['IdEsc'].'</td>
+                  <td>
+                  <a href="enviarACalificar.php?competidor='.$row['CI'].'&id='.$row['IdTorneo'].' ">'.$row['Estado'].'</a>    
+                  </td>
+                </tr>';
+          
+      }
+      echo '</table>';
+
+      //meter boton que diga ver resultado final y mandar a la tabla de resultado
+      //acá todos tienen el mismo color
+
+
+    }else if($competidores = 4){
+
+      //Son dos grupos de dos, dos AKA y dos AO
+      //Ganador de cada color se enfrenta a para 1er y 2do (por el oro)
+      //Pededores quedan con 3er puesto pero no hacen otro kata
+    
+
+    }else if($competidores >= 5 && $competidores <= 10){
+
+      //Son dos grupos y hay dos katas para la victoria
+      //En la segunda vuelta 1ro contra 1ro (ganador Oro, perdedor, plata)
+      //2do contra 3ro (Ganador bronce, perdedor 5to) 
+      //3ro contra 2do (Ganador bronce, perdedor 5to)
+
+    }else if($competidores >= 11 && $competidores <= 24){
+
+      //son dos grupos, de los cuales pasan la mitad de cada grupo(primer kata)
+      //la mitad vuelve a hacer otro kata y los 3 mejores pasan a realizar el ultimo Kata
+      //En la segunda vuelta 1ro contra 1ro (ganador Oro, perdedor, plata)
+      //2do contra 3ro (Ganador bronce, perdedor 5to) 
+      //3ro contra 2do (Ganador bronce, perdedor 5to)
+
+    }else if($competidores >= 25 && $competidores <= 48){
+
+    }else if($competidores >= 49 && $competidores <= 96){
+
+    }
+       
+    }
 }
 
 ?>

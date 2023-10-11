@@ -46,7 +46,6 @@
     }
 
     public function listarTorneos(){
-
         try{
             $sql = "SELECT * FROM torneo";
             $insert = $this->conexion->prepare($sql);
@@ -60,6 +59,7 @@
         echo '<table border=1>';
         echo '<tr><th>ID</th><th>Nombre</th><th>Fecha</th><th>Dirección</th><th>Categoria</th><th colspan="2">Acciones</th></tr>';
         foreach ($insert as $row){
+
             echo '<tr>
                     <td>'.$row['IdTorneo'].'</td>
                     <td>'.$row['Nombre'].'</td>
@@ -132,6 +132,28 @@
         $stmt->execute();
 
     }
+
+    public function selectDeTorneos(){
+
+        try{
+            $sql = "SELECT * FROM torneo";
+            $insert = $this->conexion->prepare($sql);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+        }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+        }
+           
+        foreach ($insert as $row){
+            echo '
+            <option value="'.$row['IdTorneo'].'">'.$row['Nombre'].' | '.$row['Fecha'].' | '.$row['Categoria'].'</option>';
+             
+        }
+    }
     
 }
+
+
 ?>
