@@ -191,8 +191,15 @@ class ListarCompetidores extends Conexion {
 
     if($competidores >= 2 && $competidores <= 3){
 
+      $pool;
+      $numero = random_int(1, 2);
+        if($numero == 1){
+          $pool = "AKA";
+        }else{
+          $pool = "AO";
+        }
       echo '<table border=1>';
-      echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th colspan="2">Acciones</th></tr>';
+      echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th>Pool</th><th>Acciones</th><th>Estado</th></tr>';
       foreach ($insert2 as $row){
           echo '<tr>
                   <td>'.$row['CI'].'</td>
@@ -200,6 +207,10 @@ class ListarCompetidores extends Conexion {
                   <td>'.$row['Sexo'].'</td>
                   <td>'.$row['F_Nac'].'</td>
                   <td>'.$row['IdEsc'].'</td>
+                  <td>'.$pool.'</td>
+                  <td>
+                  <a href="ingresarKata.php?competidor='.$row['CI'].'&id='.$row['IdTorneo'].'&pool='.$pool.' ">Ingresar Kata</a>
+                  </td>
                   <td>
                   <a href="enviarACalificar.php?competidor='.$row['CI'].'&id='.$row['IdTorneo'].' ">'.$row['Estado'].'</a>    
                   </td>
@@ -241,6 +252,31 @@ class ListarCompetidores extends Conexion {
     }
        
     }
+
+
+    public function cambiarEstado($id){
+
+      try{
+        $sql = "SELECT * FROM competidor WHERE CI = :id";
+        $insert = $this->conexion->prepare($sql);
+        $insert->bindParam(':id', $id, PDO::PARAM_INT);
+        $arrData = array($insert);
+        $resInsert = $insert->execute(); 
+      }catch(PDOException $ex){
+        echo "Ocurrio un error<br>";
+        echo $ex->getMessage();
+        exit;
+      }
+      foreach ($insert as $row){
+        if($row['Estado'] == "calificar"){
+
+          $actualizar = "UPDATE competidor set Estado= 'calificando' WHERE CI='".$row['CI']."'";
+          $stmt = $this->conexion->prepare($actualizar);
+          $stmt->execute();
+        }
+      }
+
 }
 
+}
 ?>
