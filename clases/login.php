@@ -25,7 +25,7 @@
                   } else{
                     session_start();
                     $_SESSION[$user] = $user;
-                    header("location: paginas/menuJuez.php?user=".$user);
+                    header("location: paginas/estadoJuez.php?user=".$user);
                   }
               } else {
                 echo "Usuario o contraseña incorrectos";
