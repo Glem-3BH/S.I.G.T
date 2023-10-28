@@ -11,7 +11,7 @@ $pool = $_GET['pool'];
 $edad; 
 $kata = $_GET['kata'];
 $tipo = "Individual";
-$idG = 0;
+$idG = 1;
 
 $resultado = $objetoEvento->categoriaTorneo($idTorneo);
 list($edad, $sexo) = $resultado;

@@ -33,7 +33,7 @@ class Juez extends Conexion {
                     FROM evento
                     INNER JOIN competidor ON evento.CI = competidor.CI
                     INNER JOIN kata ON evento.IdKata = kata.IdKata
-                    INNER JOIN escuela ON evento.IdE = escuela.IdEsc
+                    INNER JOIN escuela ON competidor.IdEsc = escuela.IdEsc
                     WHERE competidor.Estado = 'calificando'";
     
             $stmt = $this->conexion->prepare($sql);
@@ -48,6 +48,67 @@ class Juez extends Conexion {
             exit;
         }
     }
+
+    public function calificar($idj,$idE,$idkata,$puntaje){
+
+        $this->idj = $idj;
+        $this->idE = $idE;
+        $this->idkata = $idkata;
+        $this->puntaje = $puntaje;
+        
+
+        $sql = "INSERT INTO califica(IdJ,IdE,IdKata,Puntaje) VALUES(?,?,?,?)";
+        $insert = $this->conexion->prepare($sql);
+        $arrData = array($this->idj,$this->idE,$this->idkata,$this->puntaje);
+        $resInsert = $insert->execute($arrData);
+        $idInsert = $this->conexion->lastInsertId();
+        return $idInsert;
+    }
+
+    public function calificado($idevento){
+        $contador=0;
+        try{
+            $sql = "SELECT * FROM califica WHERE IdE = :idevento";
+            $insert = $this->conexion->prepare($sql);
+            $insert->bindParam(':idevento', $idevento, PDO::PARAM_INT);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+          }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+          }
+
+        foreach ($insert as $row){
+            $contador++;
+        }
+
+        return $contador;
+    }
+        
+
+  public function cambioDeEstado($id){
+
+    try{
+        $sql = "SELECT * FROM competidor WHERE CI = :id";
+        $insert = $this->conexion->prepare($sql);
+        $insert->bindParam(':id', $id, PDO::PARAM_INT);
+        $arrData = array($insert);
+        $resInsert = $insert->execute(); 
+      }catch(PDOException $ex){
+        echo "Ocurrio un error<br>";
+        echo $ex->getMessage();
+        exit;
+      }
+      foreach ($insert as $row){
+        if($row['Estado'] == "calificando"){
+
+          $actualizar = "UPDATE competidor set Estado= 'calificado' WHERE CI='".$row['CI']."'";
+          $stmt = $this->conexion->prepare($actualizar);
+          $stmt->execute();
+        }
+      }
+  }
 }
 
 

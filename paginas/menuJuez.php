@@ -5,7 +5,7 @@ require_once("../clases/login.php");
 
 $user = $_GET['user'];
 
-$idesc = $_GET['idesc'];
+$ide = $_GET['ide'];
 $idtorneo = $_GET['idtorneo'];
 $ci = $_GET['ci'];
 $etapa = $_GET['etapa'];
@@ -81,11 +81,13 @@ if(isset($_POST["cerrar"])){
                     <!-- Agrega más marcadores de puntuación aquí si lo deseas -->
                 </div>
             </div>
-            <form id="calificacionForm" action="tuscript.php" method="get">
+            <form id="calificacionForm" action="calificacion.php" method="get">
                 <input type="hidden" name="calificacion" id="calificacionField" value="5.0">
-                <input type="hidden" name="idJ" value="a">
-                <input type="hidden" name="idE" value="b">
-                <input type="hidden" name="idKata" value="b">
+                <input type="hidden" name="user" value="<?php echo $user ?>">
+                <input type="hidden" name="idJ" value="<?php echo $user ?>">
+                <input type="hidden" name="ci" value="<?php echo $ci ?>">
+                <input type="hidden" name="idE" value="<?php echo $ide ?>">
+                <input type="hidden" name="idKata" value="<?php echo $idkata ?>">
                 <button type="button" onclick="enviarCalificacion()">Enviar</button>
             </form>
         </div>

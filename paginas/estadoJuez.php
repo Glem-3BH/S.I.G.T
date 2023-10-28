@@ -18,25 +18,14 @@ if(isset($_POST["cerrar"])){
 }
 
 
-$noHay = true;
-
-do{
-
-echo "Esperando competidor, poner pantalla aquí";
 $verSiHay = $objetoJuez->calificando();
-
-    if ($verSiHay){
-
-        $noHay=false;
-    }
-} while($noHay == true);
-
 
 $paraCalificar = $objetoJuez->consultarEstado();
 
-if($paraCalificar > 0){
+if($verSiHay == true){
+    if($paraCalificar > 0){
     
-    $idesc = $paraCalificar['IdE'];
+    $ide = $paraCalificar['IdE'];
     $idtorneo = $paraCalificar['IdTorneo'];
     $ci = $paraCalificar['CI'];
     $etapa = $paraCalificar['Etapa'];
@@ -49,10 +38,14 @@ if($paraCalificar > 0){
     $nombreKata = $paraCalificar['NombreKata'];
     $nombreEsc = $paraCalificar['NombreEscuela'];
 
-    header('location: menuJuez.php?user='.$user.'&idesc='.$idesc.'&idtorneo='.$idtorneo.'&ci='.$ci.'&etapa='.$etapa.'&color='.$color.'&categoria='.$categoria.'&sexo='.$sexo.'&tipo='.$tipo.'&idkata='.$idkata.'&nombre='.$nombre.'&nombrekata='.$nombreKata.'&nombreesc='.$nombreEsc.'');
+    header('location: menuJuez.php?user='.$user.'&ide='.$ide.'&idtorneo='.$idtorneo.'&ci='.$ci.'&etapa='.$etapa.'&color='.$color.'&categoria='.$categoria.'&sexo='.$sexo.'&tipo='.$tipo.'&idkata='.$idkata.'&nombre='.$nombre.'&nombrekata='.$nombreKata.'&nombreesc='.$nombreEsc.'');
+    }
 }
+
+//header('location: enEsperaJuez.php?user='.$user);
 
 //consulta que trae los datos de ese competidor que esta en calificando
 
 //lo envio a la pantalla de puntuar desde acá
 ?>
+
