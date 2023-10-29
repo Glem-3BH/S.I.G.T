@@ -9,15 +9,15 @@ $objetoCompetidor = new Competidor();
 $objetoTorneo = new Torneo();
 $objetoEscuela = new Escuela();
 
-if( isset($_POST["inscribir"])){
+if($_GET["inscribir"]){
 
-    $ci=$_POST["ci"];
-    $nombre=$_POST["nombre"];
-    $sexo=$_POST["sexo"];
-    $fnac=$_POST["fnac"];
-    $idE=$_POST["idE"];
-    $idtorneo=$_POST["IdTorneo"];
-    $estado=$_POST["estado"];
+    $ci=$_GET["ci"];
+    $nombre=$_GET["nombre"];
+    $sexo=$_GET["sexo"];
+    $fnac=$_GET["fnac"];
+    $idE=$_GET["idE"];
+    $idtorneo=$_GET["IdTorneo"];
+    $estado=$_GET["estado"];
     $insert = $objetoCompetidor->insertarCompetidor($ci,$nombre,$sexo,$fnac,$idE,$idtorneo,$estado);
     echo "<script>window.confirm('Competidor ingresado correctamente')</script>";
 }
@@ -39,116 +39,89 @@ if(isset($_POST["cerrar"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style11.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/jpg" href="images/sigticon.png"/>
     <title>Ingresar Competidor</title>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
-              <a class="nav-link disabled" aria-current="page" href="#">V.1.0</a>
-              <a class="nav-link" href="#">CUK</a>
-              <a class="nav-link" href="#">Contacto</a>
-              <form action="menuAdministrador.php" method="POST">
-                <input class="nav-link" type="submit" name="cerrar" value="LOGOUT"></input>
-              </form>
-            </div>
+  <header>
+    <nav class="navegador">
+        <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+      <div class="btnNav">
+        <div class="boton-3d">
+          <div class="cara cara-frontal">COMPETIDOR</div>
+          <div class="cara cara-trasera">
+            <a href="verCompetidores.html">VER COMPETIDORES</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="ingcomp.html">INGRESAR COMPETIDOR</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="listakatas.html">VER KATAS</a>
           </div>
         </div>
-      </nav>
-  </header>
-  <h1>Nuevo competidor</h1>
-    <button class="import">Importar desde archivo</button>
-
-    <section class="vh-10 gradient-custom">
-        <div class="container py-5 h-100">
-          <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-9 col-xl-7">
-              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                <div class="card-body p-4 p-md-5">
-                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Ingrese nuevo competidor manualmente:</h3>
-                  
-                  <form action="inscribir.php" method="POST">
-                    <div class="row">
-                      <div class="col-md-12 mb-4">
-      
-                        <div class="form-outline">
-                          <label class="form-label" for="name">Nombre Completo</label>
-                          <input type="text" id="name" class="form-control form-control-lg" name="nombre" required/>
-                        </div>
-
-      
-                      </div>
-                    </div>
-      
-                    <div class="row">
-                      <div class="col-md-6 mb-4 d-flex align-items-center">
-      
-                        <div class="form-outline datepicker w-100">
-                          <label for="birthdayDate" class="form-label">Fecha de Nacimiento</label>
-                          <input type="date" class="form-control form-control-lg" id="birthdayDate" name="fnac" required/>
-                        </div>
-      
-                      </div>
-                      <div class="col-md-6 mb-4">
-      
-                        <h6 class="mb-2 pb-1">Género: </h6>
-      
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="sexo" id="femaleGender"
-                            value="F" checked />
-                          <label class="form-check-label" >Mujer</label>
-                        </div>
-      
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="sexo" id="maleGender"
-                            value="M" />
-                          <label class="form-check-label" >Hombre</label>
-                        </div> 
-                      </div>
-                    </div>
-                      <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-outline">
-                          <label class="form-label" for="ci">C.I.</label>
-                          <input type="tel" id="ci" name="ci" class="form-control form-control-lg" />
-                        </div>
-                      </div>
-                      <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-outline">
-                          <label class="form-label" for="ci" >Escuela</label>
-                          <select name="idE" required>
-                          <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-outline">
-                          <label class="form-label" for="ci" >Torneo</label>
-                          <select name="IdTorneo" required>
-                            <?php $listar = $objetoTorneo->selectDeTorneos();?>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                      <input type="hidden" name="estado" value="calificar">
-                      <input class="btn btn-danger btn-lg" type="submit" value="inscribir" name="inscribir" />
-                    </div>
-
-                  </form>
-
-                </div>
-              </div>
-            </div>
+        <div class="boton-3d">
+          <div class="cara cara-frontal">ESCUELAS</div>
+          <div class="cara cara-trasera">
+            <a href="ingescuela.html">INGRESAR ESCUELA</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="verEscuela.html">VER ESCUELA</a>
           </div>
         </div>
-      </section>
+        <div class="boton-3d">
+          <div class="cara cara-frontal">TORNEOS</div>
+          <div class="cara cara-trasera">
+            <a href="iniciarTorneo.html">INICIAR TORNEO</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header><br><br>
+  <div class="cajaform">
+    <div class="formularios">
+      <form action="inscribir.php" class="formularios" method="GET">
+        <label for="nombre">Nombre y apellido</label> 
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="ci">Documento</label>
+        <input type="number" id="cedula" name="ci" required>
+        <label for="fnac">Fecha de nacimiento</label>
+        <input type="date" name="fnac" id="fecha" required>
+        <div class="radio">
+          <select name="idE" id="escuela">
+            <option value="" disabled selected>Seleccione escuela</option>
+            <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
+          </select>
+          
+          <select name="IdTorneo" id="torneo">Seleccione torneo
+            <option value="" disabled selected>Seleecione torneo</option>
+            <?php $listar = $objetoTorneo->selectDeTorneos();?>
+          </select>
+          <input type="radio" id="F" name="sexo" value="F">
+          <label for="F">Femenino</label>
+          <input type="radio" id="M" name="sexo" value="M">
+          <label for="M">Masculino</label> 
+        </div>
+        <input type="hidden" name="estado" value="calificar">
+        <input type="submit" id="ingreso" value="inscribir" name="inscribir"></input> 
+      </form>
+    </div>
+    
+  </div>
+   
+
+    <script>
+      // Obtenemos una referencia al botón
+      var boton = document.getElementById("ingreso");
+      
+      // Agregamos un evento click al botón
+      boton.addEventListener("click", function() {
+          // Mostramos un mensaje de respuesta
+          alert("Participante ingresado correctamente");
+      });
+  </script>
 </body>
 </html>

@@ -80,6 +80,61 @@
                 return false;
             }
         }
+
+
+        public function mejorCompetidor(){ 
+            
+                try {
+    
+                // Consulta SQL para obtener el IDE del competidor con el puntaje más alto en la tabla "califica"
+                $queryMejorCompetidor = "SELECT IdE, SUM(Puntaje) AS TotalPuntaje
+                                        FROM califica
+                                        GROUP BY IdE
+                                        ORDER BY TotalPuntaje DESC
+                                        LIMIT 1"; // Obtiene el competidor con el puntaje más alto
+            
+                $stmtMejorCompetidor = $this->conexion->prepare($queryMejorCompetidor);
+                $stmtMejorCompetidor->execute();
+                $row = $stmtMejorCompetidor->fetch(PDO::FETCH_ASSOC);
+            
+                $mejorCompetidorIdE = $row['IdE'];
+                $mejorCompetidorPuntaje = $row['TotalPuntaje'];
+            
+                // Consulta SQL para obtener el valor del atributo "CI" de la tabla "evento" del competidor con el puntaje más alto
+                $queryCI = "SELECT CI FROM evento WHERE IdE = :competidorIdE";
+                $stmtCI = $this->conexion->prepare($queryCI);
+                $stmtCI->bindParam(':competidorIdE', $mejorCompetidorIdE);
+                $stmtCI->execute();
+                $eventoRow = $stmtCI->fetch(PDO::FETCH_ASSOC);
+            
+                $CI = $eventoRow['CI'];
+                
+                // Consulta SQL para obtener el puntaje más alto
+                $maxQuery = "SELECT MAX(Puntaje) AS MaxPuntaje FROM califica WHERE IdE = :competidor";
+                $maxStmt = $this->conexion->prepare($maxQuery);
+                $maxStmt->bindParam(':competidor', $mejorCompetidorIdE);
+                $maxStmt->execute();
+                $maxRow = $maxStmt->fetch(PDO::FETCH_ASSOC);
+                $maxPuntaje = $maxRow['MaxPuntaje'];
+            
+                // Consulta SQL para obtener el puntaje más bajo
+                $minQuery = "SELECT MIN(Puntaje) AS MinPuntaje FROM califica WHERE IdE = :competidor";
+                $minStmt = $this->conexion->prepare($minQuery);
+                $minStmt->bindParam(':competidor', $mejorCompetidorIdE);
+                $minStmt->execute();
+                $minRow = $minStmt->fetch(PDO::FETCH_ASSOC);
+                $minPuntaje = $minRow['MinPuntaje'];
+            
+                $mejorCompetidorPuntaje = $mejorCompetidorPuntaje - ($maxPuntaje + $minPuntaje);
+            
+                return array("CI" => $CI, "MejorCompetidorPuntaje" => $mejorCompetidorPuntaje);
+            
+            } catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+       
     }
 
     

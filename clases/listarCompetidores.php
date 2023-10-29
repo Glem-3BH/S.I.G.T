@@ -22,8 +22,11 @@ class ListarCompetidores extends Conexion {
             echo $ex->getMessage();
             exit;
         }
-        echo '<table border=1>';
-        echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th colspan="2">Acciones</th></tr>';
+        echo '<div class="tanteador">
+              <table border="1">
+              <caption>MOSTRANDO COMPETIDORES</caption>';
+        echo '<thead><tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th>Id Torneo</th><th colspan="2">Acciones</th></tr></thead>';
+        echo '<tbody>';
         foreach ($insert as $row){
             echo '<tr>
                     <td>'.$row['CI'].'</td>
@@ -31,6 +34,7 @@ class ListarCompetidores extends Conexion {
                     <td>'.$row['Sexo'].'</td>
                     <td>'.$row['F_Nac'].'</td>
                     <td>'.$row['IdEsc'].'</td>
+                    <td>'.$row['IdTorneo'].'</td>
                     <td>
     
                         <a href="eliminarCompetidor.php?competidor='.$row['CI'].'">Eliminar</a>
@@ -42,7 +46,9 @@ class ListarCompetidores extends Conexion {
                   </tr>';
              
         }
-        echo '</table>';
+        echo '</tbody>
+            </table>
+            </div>';
         
     }
 
@@ -75,77 +81,40 @@ class ListarCompetidores extends Conexion {
             exit;
         }
         foreach ($insert as $row){
-            echo '<section class="vh-10 gradient-custom">
-            <div class="container py-5 h-100">
-              <div class="row justify-content-center align-items-center h-100">
-                <div class="col-12 col-lg-9 col-xl-7">
-                  <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Ingrese nuevo competidor manualmente:</h3>
-                      
-                      <form action="actualizarCompetidor.php" method="GET">
-                        <div class="row">
-                          <div class="col-md-12 mb-4">
+
+          echo '
+          <div class="cajaform">
+           <div class="formularios">
+         <form action="inscribir.php" class="formularios" method="GET">
+        <label for="nombre">Nombre y apellido</label> 
+        <input type="text" id="nombre" name="nombre" value="'.$row['Nombre'].'" required>
+        <label for="ci">Documento</label>
+        <input type="number" id="cedula" name="ci" value="'.$row['CI'].'" required>
+        <label for="fnac">Fecha de nacimiento</label>
+        <input type="date" name="fnac" id="fecha" value="'.$row['F_Nac'].'" required>
+        <div class="radio">
+          <select name="idE" id="escuela">
+            <option value="" disabled selected>Seleccione escuela</option>
+            <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
+          </select>
           
-                            <div class="form-outline">
-                              <label class="form-label" for="name">Nombre Completo</label>
-                              <input type="text" id="name" class="form-control form-control-lg" name="nombre" value="'.$row['Nombre'].'"/>
-                            </div>
+          <select name="IdTorneo" id="torneo">Seleccione torneo
+            <option value="" disabled selected>Seleecione torneo</option>
+            <?php $listar = $objetoTorneo->selectDeTorneos(); ?>
+          </select>
+          <input type="radio" id="F" name="sexo" value="F">
+          <label for="F">Femenino</label>
+          <input type="radio" id="M" name="sexo" value="M">
+          <label for="M">Masculino</label> 
+        </div>
+        <input type="hidden" name="estado" value="calificar">
+        <input type="submit" id="ingreso" value="actualizar" name="Actualizar"></input> 
+      </form>
+    </div>
     
+  </div>
           
-                          </div>
-                        </div>
-          
-                        <div class="row">
-                          <div class="col-md-6 mb-4 d-flex align-items-center">
-          
-                            <div class="form-outline datepicker w-100">
-                              <label for="birthdayDate" class="form-label">Fecha de Nacimiento</label>
-                              <input type="date" class="form-control form-control-lg" id="birthdayDate" name="fnac" value="'.$row['F_Nac'].'"/>
-                            </div>
-          
-                          </div>
-                          <div class="col-md-6 mb-4">
-          
-                            <h6 class="mb-2 pb-1">Género: </h6>
-          
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="sexo" id="femaleGender"
-                                value="F" checked />
-                              <label class="form-check-label" >Mujer</label>
-                            </div>
-          
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="sexo" id="maleGender"
-                                value="M" />
-                              <label class="form-check-label" >Hombre</label>
-                            </div> 
-                          </div>
-                        </div>
-                          <div class="col-md-6 mb-4 pb-2">
-                            <div class="form-outline">
-                              <label class="form-label" for="ci">C.I.</label>
-                              <input type="tel" id="ci" name="ci" class="form-control form-control-lg" value="'.$row['CI'].'" />
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-4 pb-2">
-                            <div class="form-outline">
-                              <label class="form-label" for="ci" >Escuela</label>
-                              <input type="number" id="ci" name="idE" class="form-control form-control-lg" value="'.$row['IdEsc'].'"/>
-                            </div>
-                          </div>
-                        </div>
-                          <input class="btn btn-danger btn-lg" type="submit" value="actualizar" name="Actualizar" />
-                        </div>
-          
-                      </form>
-    
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>';
+          ';
              
         }
         
@@ -170,6 +139,9 @@ class ListarCompetidores extends Conexion {
     
     public function listarParaTorneo($id){
       $competidores = 0;
+      $categoria ="";
+      $genero ="";
+      $idtorneo="";
       try{
         $sql = "SELECT * FROM competidor WHERE IdTorneo = :id";
         $insert = $this->conexion->prepare($sql);
@@ -198,14 +170,20 @@ class ListarCompetidores extends Conexion {
         }else{
           $pool = "AO";
         }
+      echo '<div class="tanteador">';
       echo '<table border=1>';
-      echo '<tr><th>Cedula</th><th>Nombre</th><th>Genero</th><th>F.Nacimiento</th><th>Id Escuela</th><th>Pool</th><th>Acciones</th><th>Estado</th></tr>';
+      echo '<caption>MOSTRANDO COMPETIDORES</caption>';
+      echo '<thead>';
+      echo '<tr>
+      <th colspan="5">CATEGORÍA:# | GÉNERO:# | TORNEO:#</th>
+      </tr>
+      </thead>
+      <tbody>';
+    
+      echo '<tr><th>Nombre</th><th>Id Escuela</th><th>Pool</th><th>Acciones</th><th>Estado</th></tr>';
       foreach ($insert2 as $row){
           echo '<tr>
-                  <td>'.$row['CI'].'</td>
                   <td>'.$row['Nombre'].'</td>
-                  <td>'.$row['Sexo'].'</td>
-                  <td>'.$row['F_Nac'].'</td>
                   <td>'.$row['IdEsc'].'</td>
                   <td>'.$pool.'</td>
                   <td>
@@ -218,6 +196,8 @@ class ListarCompetidores extends Conexion {
           
       }
       echo '</table>';
+      echo '</tbody>';
+      echo '</div>';
 
       //meter boton que diga ver resultado final y mandar a la tabla de resultado
       //acá todos tienen el mismo color
@@ -277,6 +257,32 @@ class ListarCompetidores extends Conexion {
       }
 
 }
+
+  public function seleccionarCompetidor($id,$puntaje){
+
+    try{
+      $sql = "SELECT * FROM competidor WHERE CI = :id";
+      $insert = $this->conexion->prepare($sql);
+      $insert->bindParam(':id', $id, PDO::PARAM_INT);
+      $arrData = array($insert);
+      $resInsert = $insert->execute(); 
+    }catch(PDOException $ex){
+      echo "Ocurrio un error<br>";
+      echo $ex->getMessage();
+      exit;
+    }  
+    echo '<table border=1>';
+    echo '<tr><th>Cedula</th><th>Nombre</th><th>Puntaje</th></tr>';
+    foreach ($insert as $row){
+        echo '<tr>
+                <td>'.$row['CI'].'</td>
+                <td>'.$row['Nombre'].'</td>
+                <td>'.$puntaje.'</td>';
+        
+    }
+    echo '</table>';
+
+  }
 
 }
 ?>

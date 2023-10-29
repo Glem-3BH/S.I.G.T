@@ -53,8 +53,11 @@
             echo $ex->getMessage();
             exit;
         }
-        echo '<table border=1>';
-        echo '<tr><th>ID</th><th>Nombre</th><th>Localidad</th><th colspan="2">Acciones</th></tr>';
+        echo '<div class="listakatas">
+                <table border=1>
+                <caption>Listado de Escuelas</caption>';
+        echo '<thead><tr><th>ID</th><th>Nombre</th><th>Localidad</th><th colspan="2">Acciones</th></tr></thead>
+                <tbody>';
         foreach ($insert as $row){
             echo '<tr>
                     <td>'.$row['IdEsc'].'</td>
@@ -71,7 +74,8 @@
                   </tr>';
              
         }
-        echo '</table>';
+        echo '<tbody>
+        </table>';
         
     }
 

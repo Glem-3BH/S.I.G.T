@@ -7,24 +7,25 @@
      private $fecha;
      private $direccion;
      private $categoria;
+     private $sexo;
 
      public function __construct(){
          $this->conexion = new Conexion();
          $this->conexion = $this->conexion->connect();
      }
 
-     public function insertarTorneo(string $nombre, string $fecha, string $direccion, string $categoria){
+     public function insertarTorneo(string $nombre, string $fecha, string $direccion, string $categoria, string $sexo){
 
         
         $this->nombre = $nombre;
         $this->fecha = $fecha;
         $this->direccion = $direccion;
         $this->categoria = $categoria;
-        
+        $this->sexo = $sexo;
 
-        $sql = "INSERT INTO torneo(Nombre, Fecha, Dirección, Categoria) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO torneo(Nombre, Fecha, Dirección, Categoria, Sexo) VALUES(?,?,?,?,?)";
         $insert = $this->conexion->prepare($sql);
-        $arrData = array($this->nombre,$this->fecha,$this->direccion,$this->categoria);
+        $arrData = array($this->nombre,$this->fecha,$this->direccion,$this->categoria,$this->sexo);
         $resInsert = $insert->execute($arrData);
         $idInsert = $this->conexion->lastInsertId();
         return $idInsert;

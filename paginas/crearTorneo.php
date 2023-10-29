@@ -9,7 +9,8 @@ if($_GET){
     $fecha=$_GET['fecha'];
     $direccion=$_GET['direccion'];
     $categoria=$_GET['categoria'];
-    $insertarTorneo = $objetoTorneo->insertarTorneo($nombre,$fecha,$direccion,$categoria);
+    $sexo=$_GET['sexo'];
+    $insertarTorneo = $objetoTorneo->insertarTorneo($nombre,$fecha,$direccion,$categoria,$sexo);
     echo "<script>window.confirm('Torneo ingresada correctamente');</script>";  
 }
 
@@ -20,26 +21,74 @@ if($_GET){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Crear Campeonato</title>
+    <link rel="icon" type="image/jpg" href="images/sigticon.png"/>
 </head>
-<body>
-    <h1>Ingresar Torneo</h1>
 
-    <form action="crearTorneo.php" method="GET">
-        <label >Nombre</label>
-        <input type="text" name="nombre">
-        <label >Fecha</label>
-        <input type="date" name="fecha">
-        <label >Direcion</label>
-        <input type="text" name="direccion">
-        <label >Categoria</label>
-        <select name="categoria">
+<body>
+  <header>
+    <nav class="navegador">
+        <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+      <div class="btnNav">
+        <div class="boton-3d">
+          <div class="cara cara-frontal">COMPETIDOR</div>
+          <div class="cara cara-trasera">
+            <a href="verCompetidores.html">VER COMPETIDORES</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="ingcomp.html">INGRESAR COMPETIDOR</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="listakatas.html">VER KATAS</a>
+          </div>
+        </div>
+        <div class="boton-3d">
+          <div class="cara cara-frontal">ESCUELAS</div>
+          <div class="cara cara-trasera">
+            <a href="ingescuela.html">INGRESAR ESCUELA</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="">VER ESCUELA</a>
+          </div>
+        </div>
+        <div class="boton-3d">
+          <div class="cara cara-frontal">TORNEOS</div>
+          <div class="cara cara-trasera">
+            <a href="iniciarTorneo.html">INICIAR TORNEO</a>
+          </div>
+          <div class="cara cara-trasera">
+            <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header><br><br>
+  <div class="cajaform">
+    <div class="formularios">
+      <form action="crearTorneo.php" class="formularios"  method="GET">
+        <label for="CI">Nombre</label> 
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <label for="direccion">Dirección</label>
+        <input type="text" name="direccion" id="direccion" required>
+        <div class="radio">
+          <select name="categoria" id="Categoria">
+            <option value="" disabled selected>Seleccione categoría</option>
             <option value="12/13" >12/13</option>
             <option value="14/15" >14/15</option>
             <option value="16/17" >16/17</option>
             <option value="+18" >+18</option>
-        </select>
-        <input type="submit" name="Ingresar">
+          </select>
+          <input type="radio" id="M" name="sexo" value="M">
+          <label for="M">Masculino</label> 
+          <input type="radio" id="F" name="sexo" value="F">
+          <label for="F">Femenino</label>
+        </div> 
+        <input type="submit" id="ingreso" name="Ingresar"></input>
+    </div>
+  </div>
     </form>
 </body>
 </html>

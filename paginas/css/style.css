@@ -1,6 +1,6 @@
 body{
     min-height: 100vh;
-    background-color: #4CAF50;
+    background-color: #4caf4fc9;
 }
 
 .cajaform{
@@ -17,14 +17,80 @@ height: 110vh;
   }
   
   .cajaformT select {
-    border: 10px solid #4CAF50; /* Color del borde y grosor */
+    border: 10px solid #4caf4fc9; /* Color del borde y grosor */
     border-radius: 0; /* Elimina los bordes redondeados */
     padding: 15px; /* Espacio interno */
     width: auto; /* Ancho automático para que el borde rodee el select */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
   }
   
-  
+.cajaLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} 
+
+.formLogin{
+    border: 2px solid rgba(0, 0, 0, 0);
+    padding: 10px;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: white;
+}
+
+.formLogin img{
+    width: 150px;
+    height: 150px;
+}
+
+.formLogin:hover{
+    border: 2px solid #779c4cc5;
+}
+
+.formLogin label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.formLogin input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #779c4cc5;
+    color: rgb(0, 0, 0);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+.formLogin input:hover{
+    background-color: white;
+}
+
+.formLogin p{
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    text-shadow: 12px 12px 12px rgb(0, 0, 0);
+}
+
+button{
+    border-radius: 15%;
+    padding: 10px;
+    max-width: 800px;
+    width: 25%;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: white;
+    color: #3B3E5B;
+    cursor: pointer;
+}
 
 .cajaformEsc{
     display: flex;
@@ -53,7 +119,7 @@ height: 110vh;
 }
 
 .formularios:hover{
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid #779c4cc5;
 }
 
 .formularios label{
@@ -66,7 +132,7 @@ height: 110vh;
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    background-color: #7A6E69;
+    background-color: #779c4cc5;
     color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 18px;
@@ -87,14 +153,24 @@ button{
 
 .formularios select{
     border-radius: 0%;
-    width: 50%;
+    width: 600%;
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    background-color: #7A6E69;
+    background-color: #779c4cc5;
     color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 18px;
+    text-align: center;
+}
+.formularios select:hover{
+    background-color: white;
+    color: #3B3E5B;
+    font-size: 22px;
+}
+
+.radio input[type="radio"]{
+  transform: scale(2.5);
 }
 
 .formularios input:hover{
@@ -104,8 +180,8 @@ button{
 }
 
 .formularios input[type="submit"]{
-    background-color: #7A6E69;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -127,7 +203,7 @@ a{
     top: 0; /* Lo fija en la parte superior de la ventana */
     left: 0; /* Lo fija en el lado izquierdo de la ventana */
     width: 100%; /* Ocupa todo el ancho de la ventana */
-    background-color: #779c4c; /* Color de fondo para el elemento de navegación */
+    background-color: #779c4cc5; /* Color de fondo para el elemento de navegación */
     padding: 10px; /* Espaciado interno */
     z-index: 100; /* Controla la superposición con otros elementos */
     border: 5px outset #f1ede100;
@@ -142,6 +218,10 @@ a{
     height: 120PX;
     width: 120PX;
   }
+
+  .icono img:hover {
+    transform: scale(0.8);
+}
 
   .btnNav {
     display: flex;
@@ -258,44 +338,6 @@ select:hover{
     text-align: center;
 }
 
-.cajaP{
-    width: 80%;
-    margin: 0 auto;
-    background-color: #7A6E69;
-    border: 1px solid black;
-    
-}
-.cajaP table{
-    width: 100%;
-    height: 100%;
-
-    
-}
-.cajaP th{
-    font-size: 40px;
-    text-align: center;
-    background-color: #7A6E69;
-    padding: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
-    color: white;
-}
-.cajaP td{
-    font-size: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-    color: white;
-    padding: 30px;
-}
-
-.caja{
-    width : auto;
-    height: auto;
-    margin: 2%;
-    margin: 2%;
-    background-color: #3B3E5B;
-}
-
 #selecTorneo{
     display: flex;
     justify-content: center;
@@ -329,7 +371,7 @@ select:hover{
     align-items: center; /* Centrar verticalmente */
     height: 90vh;
     padding: 10px;
-    background-color: #000000;
+    background-color: #779c4cc5;
   }
 
   .caja-score {
@@ -342,7 +384,7 @@ select:hover{
     position: relative;
     width: 300px; /* Ancho de la esfera */
     height: 300px; /* Altura de la esfera */
-    background-color: #7A6E69;
+    background-color: #ffffff;
     border-radius: 50%;
     margin: 20px auto;
     padding: 10px;
@@ -357,7 +399,7 @@ select:hover{
     transform: translate(-50%, -50%);
     font-size: 124px;
     font-weight: bold;
-    color: #3B3E5B;
+    color: #779c4cc5;
 }
 .score-range {
 
@@ -381,7 +423,7 @@ select:hover{
     margin: auto;
     padding: 3px 20px;
     font-size: 36px;
-    background-color: #000000;
+    background-color: #00000000;
     color: #3B3E5B;
     border: none;
     border-radius: 5px;
@@ -416,7 +458,7 @@ select:hover{
 }
 
 .datos-calificar th, .datos-calificar td{
-    border: 4px solid #4CAF50; /* Ancho del borde y color de las celdas */
+    border: 4px solid #ffffff; /* Ancho del borde y color de las celdas */
   padding: 10px; /* Espacio interno en las celdas */
   text-align: center; /* Alineación del texto en las celdas */
 }
@@ -467,7 +509,7 @@ select:hover{
 }
 
 .boton-3d .cara-frontal {
-    background-color: #66BB6A;
+    background-color: #66bb6ac5;
     color: #000000;
     display: flex;
     justify-content: center;
@@ -479,7 +521,7 @@ select:hover{
 .boton-3d .cara-trasera {
     height: 50%;
     margin-bottom: 0;
-    background-color: #8BC34A;
+    background-color: #8bc34acc;
     color: #000000;
     display: flex;
     justify-content: center;
@@ -518,6 +560,12 @@ text-decoration: none;;
     padding: 5px;
 }
 
+.radio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 
@@ -525,33 +573,34 @@ text-decoration: none;;
 .cajaGestion {
     width: calc(25% - 10px); /* 25% del ancho del contenedor con espacio entre ellas */
     height: 40%;
-    background-color: #8BC34A;
-    padding: 1px;
+    background-color: #8bc34aca;
+    color: white;
+    text-shadow: 10px 10px 10px #2E7D32;
     margin-bottom: 15px;
     text-align: center;
     box-sizing: border-box;
     border: 5px outset #2E7D32;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 22px;
     border-radius: 5%;
     position: relative;
-    top: 1%;
 }
 
 .cajaGestion:hover {
+    background-color: #779c4cc5;
     border-color: #e1f0f17c;
-    color: white;
+    transform: scale(1.1);
 }
 
 .cajaGestion img:hover {
-    transform: scale(0.8);
+    transform: scale(1.4);
 }
 
 /* Estilos para las imágenes */
 .cajaGestion img {
-    max-width: 40%;
+    max-width: 30%;
     height: auto;
-    margin-top: 5px;
+    margin-top: 25px;
 }
 
 /* Media query para hacerlo responsivo */
@@ -565,3 +614,82 @@ text-decoration: none;;
     background-color: #7A6E69;
     border: 2px black;
 }
+
+.listakatas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    font-size: 30px;
+}
+.listakatas caption{
+    font-size: 50px;
+}
+.listakatas table{
+    background-color: #4caf4fc9;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    width: 50%;
+    text-align: center;
+}
+
+.tanteador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+.tanteador caption{
+    font-size: 70px;
+}
+.tanteador table{
+    background-color: #4caf4fc9;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-size: 50px;
+    width: 90%;
+    text-align: center;
+}
+
+.selTorneo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .selTorneo form {
+    border: 2px solid rgba(0, 0, 0, 0);
+    padding: 1% 7% 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .selTorneo button {
+    background-color: white;
+    border: #00000000;
+    margin-top: 10%;
+    width: 90%;
+  }
+  .selTorneo form:hover{
+    border: 2px solid #779c4cc5;
+  }
+  .selTorneo form select{
+    background-color: #779c4cc5;
+    border: #00000000;
+  }
+  .tanteador img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .calificar{
+    background-color: rgb(241, 69, 69);
+  }
+  .calificando{
+     background-color: rgb(234, 247, 56);
+  }
+  
+  .calificado{
+    background-color: rgb(27, 209, 20);
+  }

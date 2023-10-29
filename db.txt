@@ -1,0 +1,108 @@
+-- ESCUELA	
+create table escuela (
+IdEsc int auto_increment,
+Nombre varchar(100),
+localidad varchar(100),
+primary key (IdEsc));
+
+-- COMPETIDOR
+create table competidor (
+CI int,
+Nombre varchar(100),
+Sexo char(1),
+F_Nac date,
+IdEsc int,
+IdTorneo int,
+Estado enum("calificar","calificando","calificado"),
+primary key (ci,IdEsc),
+foreign key (IdEsc) references escuela (IdEsc));
+
+-- GRUPO agregar el IDG 1
+create table grupo ( 
+IdG int auto_increment primary key );
+INSERT INTO `grupo`(`IdG`) VALUES (1);
+
+-- TORNEO 
+create table torneo (
+IdTorneo int auto_increment,
+Nombre varchar(100),
+Fecha date,
+Dirección varchar(100),
+Categoria enum('12/13','14/15','16/17','+18'),
+Sexo char(1),
+primary key (IdTorneo));
+
+-- KATA
+create table kata (
+IdKata int auto_increment,
+Nombre varchar (100),
+primary key (IdKata));
+
+-- JUEZ
+create table juez (
+IdJ int primary key);
+
+-- EVENTO
+create table evento (
+IdE int auto_increment,
+IdTorneo int,
+CI int,
+IdG int,
+Etapa varchar(100),
+Color varchar(20),
+Edad enum('12/13','14/15','16/17','+18'),
+Sexo char(1),
+Tipo varchar(20),
+IdKata int,
+primary key (IdE, IdTorneo, ci, IdG, IdKata),
+foreign key (IdTorneo) references torneo (IdTorneo),
+foreign key (CI) references competidor (CI),
+foreign key (IdG) references grupo (IdG),
+foreign key (IdKata) references kata (IdKata));
+
+-- COMPITEN
+create table compiten (
+IdG int,
+CI int,
+primary key (IdG, CI),
+foreign key (IdG) references grupo (IdG),
+foreign key (CI) references competidor (CI));
+
+-- CALIFICA
+create table califica (
+IdJ varchar(11),
+IdE int,
+IdKata int,
+Puntaje DECIMAL(3,1));
+
+-- PARTICIPA
+create table participa (
+CI int,
+IdE int,
+Pool varchar(3),
+primary key (ci, IdE),
+foreign key (ci) references competidor (ci),
+foreign key (IdE) references evento (IdE));
+
+-- INSCRIBE
+create table inscribe (
+CI int,
+IdTorneo int,
+primary key (CI, IdTorneo),
+foreign key (CI) references competidor (CI),
+foreign key (IdTorneo) references torneo (IdTorneo));
+
+-- RANKING
+create table ranking (
+IdTorneo int,
+CI int,
+Posicion int,
+Puntaje DEC(1,1),
+primary key (IdTorneo, CI),
+foreign key (CI) references competidor (CI),
+foreign key (IdTorneo) references torneo (IdTorneo));
+
+-- USUARIO
+create table usuarios (
+id varchar(100),
+pass varchar(100));
