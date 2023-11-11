@@ -1,7 +1,11 @@
 <?php
 include_once("../conexion/conexion.php");
 include_once("../clases/listarCompetidores.php");
+include_once("../clases/torneo.php");
+include_once("../clases/escuela.php");
 $objetoCompetidor = new ListarCompetidores();
+$objetoEscuela = new Escuela();
+$objetoTorneo = new Torneo();
 $id = $_GET['id'];
 ?>
 
@@ -28,7 +32,7 @@ $id = $_GET['id'];
 </head>
 <header>
         <nav class="navegador">
-            <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+            <div class="icono"><a class="navbar-brand" href="menuAdministrador.php?user=administrador"><img src="images/sigticon.png" alt="" class="icono"></a></div>
           <div class="btnNav">
             <div class="boton-3d">
               <div class="cara cara-frontal">COMPETIDOR</div>
@@ -57,7 +61,7 @@ $id = $_GET['id'];
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+                <a href="juezTorneo.html">TORNEO EN CURSO</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -71,7 +75,7 @@ $id = $_GET['id'];
             </div>
           </div>
         </nav>
-      </header>
+      </header><br><br><br><br><br><br>
   <h1>Modificar Competidor</h1>
   <?php $mostrar = $objetoCompetidor->getCompetidor($id);?>
 

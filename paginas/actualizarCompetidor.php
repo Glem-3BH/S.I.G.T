@@ -5,13 +5,13 @@ include_once("../clases/listarCompetidores.php");
 $objetoCompetidor = new ListarCompetidores();
 
 $nombre = $_GET['nombre'];
-$idE = $_GET['idE'];
 $ci = $_GET['ci'];
 $sexo = $_GET['sexo'];
 $fnac = $_GET['fnac'];
+$estado = $_GET['estado'];
 
 
-$objetoCompetidor->setCompetidor($ci, $nombre, $sexo, $fnac, $idE);
+$objetoCompetidor->setCompetidor($ci, $nombre, $sexo, $fnac);
 header("location: verCompetidores.php");
 
 ?>

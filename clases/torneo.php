@@ -149,12 +149,66 @@
            
         foreach ($insert as $row){
             echo '
-            <option value="'.$row['IdTorneo'].'">'.$row['Nombre'].' | '.$row['Fecha'].' | '.$row['Categoria'].'</option>';
+            <option value="'.$row['IdTorneo'].'">'.$row['Nombre'].' | '.$row['Fecha'].' | '.$row['Sexo'].' | '.$row['Categoria'].'</option>';
              
+        }
+    }
+
+    public function listarKatas(){
+
+        try{
+            $sql = "SELECT * FROM kata";
+            $insert = $this->conexion->prepare($sql);
+            $arrData = array($insert);
+            $resInsert = $insert->execute(); 
+        }catch(PDOException $ex){
+            echo "Ocurrio un error<br>";
+            echo $ex->getMessage();
+            exit;
+        }
+        echo '<div class="tanteador">
+                  <table border="1">
+                  <caption>LISTA KATA</caption>';
+            echo '<thead><tr><th>ID</th><th>Nombre</th></tr></thead>';
+            echo '<tbody>';
+            foreach ($insert as $row){
+                echo '<tr>
+                        <td>'.$row['IdKata'].'</td>
+                        <td>'.$row['Nombre'].'</td>
+                      </tr>';
+                 
+            }
+            echo '</tbody>
+                </table>
+                </div>';
+            
+    }
+
+
+    public function competidorCalificando(){
+        try {
+            $sql = "SELECT IdTorneo FROM competidor WHERE Estado = 'calificando' LIMIT 1";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->execute();
+            
+            
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            
+            if ($resultado) {
+                return $resultado['IdTorneo'];
+            } else {
+                return null; 
+            }
+        } catch(PDOException $ex) {
+            echo "Ocurrió un error<br>";
+            echo $ex->getMessage();
+            return null; 
         }
     }
     
 }
 
+   
 
 ?>

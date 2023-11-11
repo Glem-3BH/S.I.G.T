@@ -27,7 +27,7 @@ if(isset($_POST["cerrar"])){
 <body>
 <header>
         <nav class="navegador">
-            <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+            <div class="icono"><a class="navbar-brand" href="menuAdministrador.php?user=administrador"><img src="images/sigticon.png" alt="" class="icono"></a></div>
           <div class="btnNav">
             <div class="boton-3d">
               <div class="cara cara-frontal">COMPETIDOR</div>
@@ -56,7 +56,7 @@ if(isset($_POST["cerrar"])){
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+                <a href="juezTorneo.html">TORNEO EN CURSO</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -70,7 +70,7 @@ if(isset($_POST["cerrar"])){
             </div>
           </div>
         </nav>
-      </header>
+      </header><br><br><br><br><br><br><br><br><br>
     
       <?php $listar = $objetoCompetidor->listarParaTorneo($idTorneo);?>
       <a href="resultado2a3.php?id=<?php echo $idTorneo?>">Siguiente</a>

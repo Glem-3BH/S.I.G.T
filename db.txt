@@ -97,7 +97,7 @@ create table ranking (
 IdTorneo int,
 CI int,
 Posicion int,
-Puntaje DECIMAL(3,1),
+Puntaje DEC(1,1),
 primary key (IdTorneo, CI),
 foreign key (CI) references competidor (CI),
 foreign key (IdTorneo) references torneo (IdTorneo));
@@ -106,5 +106,3 @@ foreign key (IdTorneo) references torneo (IdTorneo));
 create table usuarios (
 id varchar(100),
 pass varchar(100));
-INSERT INTO `usuarios`(`id`,'pass') VALUES ('administrador','1234'),
-('juez1','1234');

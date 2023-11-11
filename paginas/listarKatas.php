@@ -1,31 +1,28 @@
-<?php
-
+<?php 
+session_start();
 include_once("../clases/torneo.php");
+require_once("../clases/login.php");
 $objetoTorneo = new Torneo();
-
-if($_GET){
-
-    $nombre=$_GET['nombre'];
-    $fecha=$_GET['fecha'];
-    $direccion=$_GET['direccion'];
-    $categoria=$_GET['categoria'];
-    $sexo=$_GET['sexo'];
-    $insertarTorneo = $objetoTorneo->insertarTorneo($nombre,$fecha,$direccion,$categoria,$sexo);
-    echo "<script>window.confirm('Torneo ingresada correctamente');</script>";  
+$objetoLogin = new Login();
+$validar = $_SESSION['administrador'];
+if($validar == null || $validar == ''){
+    session_destroy();
+    header("location: ../index.php");
+}
+if(isset($_POST["cerrar"])){
+    $nuevoDeslogueo = $objetoLogin->cerrarSesion($_SESSION['administrador']);
 }
 
 ?>
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Crear Campeonato</title>
+    <title>Información de tanteador</title>
     <link rel="icon" type="image/jpg" href="images/sigticon.png"/>
 </head>
-
 <body>
 <header>
         <nav class="navegador">
@@ -72,32 +69,7 @@ if($_GET){
             </div>
           </div>
         </nav>
-      </header><br><br>
-  <div class="cajaform">
-    <div class="formularios">
-      <form action="crearTorneo.php" class="formularios"  method="GET">
-        <label for="CI">Nombre</label> 
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="fecha">Fecha</label>
-        <input type="date" id="fecha" name="fecha" required>
-        <label for="direccion">Dirección</label>
-        <input type="text" name="direccion" id="direccion" required>
-        <div class="radio">
-          <select name="categoria" id="Categoria">
-            <option value="" disabled selected>Seleccione categoría</option>
-            <option value="12/13" >12/13</option>
-            <option value="14/15" >14/15</option>
-            <option value="16/17" >16/17</option>
-            <option value="+18" >+18</option>
-          </select>
-          <input type="radio" id="M" name="sexo" value="M">
-          <label for="M">Masculino</label> 
-          <input type="radio" id="F" name="sexo" value="F">
-          <label for="F">Femenino</label>
-        </div> 
-        <input type="submit" id="ingreso" name="Ingresar"></input>
-    </div>
-  </div>
-    </form>
-</body>
+      </header><br><br><br><br><br><br><br><br><br><br>
+  <?php $listar = $objetoTorneo->listarKatas();?>
+
 </html>

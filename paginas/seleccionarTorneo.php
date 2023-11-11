@@ -26,7 +26,7 @@ if(isset($_POST["cerrar"])){
 <body>
 <header>
         <nav class="navegador">
-            <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+            <div class="icono"><a class="navbar-brand" href="menuAdministrador.php?user=administrador"><img src="images/sigticon.png" alt="" class="icono"></a></div>
           <div class="btnNav">
             <div class="boton-3d">
               <div class="cara cara-frontal">COMPETIDOR</div>
@@ -55,7 +55,7 @@ if(isset($_POST["cerrar"])){
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+                <a href="juezTorneo.html">TORNEO EN CURSO</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -70,14 +70,14 @@ if(isset($_POST["cerrar"])){
           </div>
         </nav>
       </header>
-    <div class="cajaform">
-    <div class="formularios">
-      <form action="iniciarTorneo.php" method="GET">
-          <select  name="id">
-            <?php $listar = $objetoTorneo->selectDeTorneos();?>
-          </select>
-          <input type="submit" value="iniciar" name="iniciar">
-      </form>
-    </div>
-    </div>
+      <div class="selTorneo">
+        <form action="iniciarTorneo.php" method="GET">
+          <h1>Iniciar un torneo</h1>
+            <select name="id">
+              <option value="">Seleccione un torneo</option>
+              <?php $listar = $objetoTorneo->selectDeTorneos();?>
+            </select>
+            <button type="submit" value="iniciar" name="iniciar">Iniciar</button>
+        </form>
+      </div>
 </html>

@@ -1,5 +1,9 @@
 <?php
 include_once("../conexion/conexion.php");
+include_once("torneo.php");
+include_once("escuela.php");
+$objetoEscuela = new Escuela();
+$objetoTorneo = new Torneo();
 class ListarCompetidores extends Conexion {
 
     private $conexion;
@@ -68,68 +72,52 @@ class ListarCompetidores extends Conexion {
     }
 
     public function getCompetidor($id){
-
-        try{
-            $sql = "SELECT * FROM competidor WHERE CI = :id";
-            $insert = $this->conexion->prepare($sql);
-            $insert->bindParam(':id', $id, PDO::PARAM_INT);
-            $arrData = array($insert);
-            $resInsert = $insert->execute(); 
-        }catch(PDOException $ex){
-            echo "Ocurrio un error<br>";
-            echo $ex->getMessage();
-            exit;
-        }
-        foreach ($insert as $row){
-
+      try {
+          $sql = "SELECT * FROM competidor WHERE CI = :id";
+          $insert = $this->conexion->prepare($sql);
+          $insert->bindParam(':id', $id, PDO::PARAM_INT);
+          $arrData = array($insert);
+          $resInsert = $insert->execute(); 
+      } catch(PDOException $ex) {
+          echo "Ocurrio un error<br>";
+          echo $ex->getMessage();
+          exit;
+      }
+  
+      foreach ($insert as $row) {
           echo '
           <div class="cajaform">
-           <div class="formularios">
-         <form action="inscribir.php" class="formularios" method="GET">
-        <label for="nombre">Nombre y apellido</label> 
-        <input type="text" id="nombre" name="nombre" value="'.$row['Nombre'].'" required>
-        <label for="ci">Documento</label>
-        <input type="number" id="cedula" name="ci" value="'.$row['CI'].'" required>
-        <label for="fnac">Fecha de nacimiento</label>
-        <input type="date" name="fnac" id="fecha" value="'.$row['F_Nac'].'" required>
-        <div class="radio">
-          <select name="idE" id="escuela">
-            <option value="" disabled selected>Seleccione escuela</option>
-            <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
-          </select>
-          
-          <select name="IdTorneo" id="torneo">Seleccione torneo
-            <option value="" disabled selected>Seleecione torneo</option>
-            <?php $listar = $objetoTorneo->selectDeTorneos(); ?>
-          </select>
-          <input type="radio" id="F" name="sexo" value="F">
-          <label for="F">Femenino</label>
-          <input type="radio" id="M" name="sexo" value="M">
-          <label for="M">Masculino</label> 
-        </div>
-        <input type="hidden" name="estado" value="calificar">
-        <input type="submit" id="ingreso" value="actualizar" name="Actualizar"></input> 
-      </form>
-    </div>
-    
-  </div>
-          
-          ';
-             
-        }
-        
-    }
+              <div class="formularios">
+                  <form action="actualizarCompetidor.php" class="formularios" method="GET">
+                      <label for="nombre">Nombre y apellido</label> 
+                      <input type="text" id="nombre" name="nombre" value="'.$row['Nombre'].'" required>
+                      <label for="ci">Documento</label>
+                      <input type="number" id="cedula" name="ci" value="'.$row['CI'].'" required>
+                      <label for="fnac">Fecha de nacimiento</label>
+                      <input type="date" name="fnac" id="fecha" value="'.$row['F_Nac'].'" required>
+                      <div class="radio">
+                          <input type="radio" id="F" name="sexo" value="F">
+                          <label for="F">Femenino</label>
+                          <input type="radio" id="M" name="sexo" value="M">
+                          <label for="M">Masculino</label> 
+                      </div>
+                      <input type="hidden" name="estado" value="calificar">
+                      <input type="submit" id="ingreso" value="actualizar" name="Actualizar"></input> 
+                  </form>
+              </div>
+          </div>';
+      }
+  }
 
-    public function setCompetidor(string $ci, string $nombre, string $sexo, string $fnac, int $idE){
+    public function setCompetidor(string $ci, string $nombre, string $sexo, string $fnac){
 
-        $actualizar = "UPDATE competidor set Nombre=:nombre, Sexo=:sexo, F_Nac=:fnac, IdEsc=:idE WHERE CI=:ci";
+        $actualizar = "UPDATE competidor set Nombre=:nombre, Sexo=:sexo, F_Nac=:fnac WHERE CI=:ci";
 
         $stmt = $this->conexion->prepare($actualizar);
         $stmt->bindParam(':ci', $ci, PDO::PARAM_STR);
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
         $stmt->bindParam(':sexo', $sexo, PDO::PARAM_STR);
         $stmt->bindParam(':fnac', $fnac, PDO::PARAM_STR);
-        $stmt->bindParam(':idE', $idE, PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -163,19 +151,39 @@ class ListarCompetidores extends Conexion {
 
     if($competidores >= 2 && $competidores <= 3){
 
-      $pool;
-      $numero = random_int(1, 2);
-        if($numero == 1){
-          $pool = "AKA";
-        }else{
-          $pool = "AO";
-        }
+      $pool = "AKA";
+      $categoria ="";
+      $genero ="";
+      $nombreTorneo="";
+
+      try {
+        $sql2 = "SELECT Sexo, Categoria, Nombre FROM torneo WHERE IdTorneo = :id";
+        $stmt = $this->conexion->prepare($sql2);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Obtener el resultado de la consulta
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verificar si se encontró un torneo con el IdTorneo proporcionado
+        if ($resultado) {
+            $categoria = $resultado['Categoria'];
+            $genero = $resultado['Sexo'];
+            $nombreTorneo = $resultado['Nombre'];
+        } 
+
+    } catch(PDOException $ex) {
+        echo "Ocurrió un error<br>";
+        echo $ex->getMessage();
+        return null; // Manejar el error según sea necesario
+    }
+      
       echo '<div class="tanteador">';
       echo '<table border=1>';
       echo '<caption>MOSTRANDO COMPETIDORES</caption>';
       echo '<thead>';
       echo '<tr>
-      <th colspan="5">CATEGORÍA:# | GÉNERO:# | TORNEO:#</th>
+      <th colspan="5">CATEGORÍA: '.$categoria.' | GÉNERO: '.$genero.' | TORNEO: '.$nombreTorneo.'</th>
       </tr>
       </thead>
       <tbody>';

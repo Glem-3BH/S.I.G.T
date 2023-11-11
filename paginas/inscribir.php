@@ -9,15 +9,15 @@ $objetoCompetidor = new Competidor();
 $objetoTorneo = new Torneo();
 $objetoEscuela = new Escuela();
 
-if($_GET["inscribir"]){
+if($_POST){
 
-    $ci=$_GET["ci"];
-    $nombre=$_GET["nombre"];
-    $sexo=$_GET["sexo"];
-    $fnac=$_GET["fnac"];
-    $idE=$_GET["idE"];
-    $idtorneo=$_GET["IdTorneo"];
-    $estado=$_GET["estado"];
+    $ci=$_POST["ci"];
+    $nombre=$_POST["nombre"];
+    $sexo=$_POST["sexo"];
+    $fnac=$_POST["fnac"];
+    $idE=$_POST["idE"];
+    $idtorneo=$_POST["IdTorneo"];
+    $estado=$_POST["estado"];
     $insert = $objetoCompetidor->insertarCompetidor($ci,$nombre,$sexo,$fnac,$idE,$idtorneo,$estado);
     echo "<script>window.confirm('Competidor ingresado correctamente')</script>";
 }
@@ -44,46 +44,55 @@ if(isset($_POST["cerrar"])){
     <title>Ingresar Competidor</title>
 </head>
 <body>
-  <header>
-    <nav class="navegador">
-        <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
-      <div class="btnNav">
-        <div class="boton-3d">
-          <div class="cara cara-frontal">COMPETIDOR</div>
-          <div class="cara cara-trasera">
-            <a href="verCompetidores.html">VER COMPETIDORES</a>
+<header>
+        <nav class="navegador">
+            <div class="icono"><a class="navbar-brand" href="menuAdministrador.php?user=administrador"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+          <div class="btnNav">
+            <div class="boton-3d">
+              <div class="cara cara-frontal">COMPETIDOR</div>
+              <div class="cara cara-trasera">
+                <a href="verCompetidores.php">VER COMPETIDORES</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="inscribir.php">INGRESAR COMPETIDOR</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="listakatas.html">VER KATAS</a>
+              </div>
+            </div>
+            <div class="boton-3d">
+              <div class="cara cara-frontal">ESCUELAS</div>
+              <div class="cara cara-trasera">
+                <a href="ingresarEscuela.php">INGRESAR ESCUELA</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="verEscuelas.php">VER ESCUELA</a>
+              </div>
+            </div>
+            <div class="boton-3d">
+              <div class="cara cara-frontal">TORNEOS</div>
+              <div class="cara cara-trasera">
+                <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="juezTorneo.html">TORNEO EN CURSO</a>
+              </div>
+            </div>
+            <div class="boton-3d">
+              <div class="cara cara-frontal">SOPORTE</div>
+              <div class="cara cara-trasera">
+                <a href="#">MANUAL DE USUARIO</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="#">CREAR TICKET</a>
+              </div>
+            </div>
           </div>
-          <div class="cara cara-trasera">
-            <a href="ingcomp.html">INGRESAR COMPETIDOR</a>
-          </div>
-          <div class="cara cara-trasera">
-            <a href="listakatas.html">VER KATAS</a>
-          </div>
-        </div>
-        <div class="boton-3d">
-          <div class="cara cara-frontal">ESCUELAS</div>
-          <div class="cara cara-trasera">
-            <a href="ingescuela.html">INGRESAR ESCUELA</a>
-          </div>
-          <div class="cara cara-trasera">
-            <a href="verEscuela.html">VER ESCUELA</a>
-          </div>
-        </div>
-        <div class="boton-3d">
-          <div class="cara cara-frontal">TORNEOS</div>
-          <div class="cara cara-trasera">
-            <a href="iniciarTorneo.html">INICIAR TORNEO</a>
-          </div>
-          <div class="cara cara-trasera">
-            <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header><br><br>
+        </nav>
+      </header><br><br>
   <div class="cajaform">
     <div class="formularios">
-      <form action="inscribir.php" class="formularios" method="GET">
+      <form action="inscribir.php" class="formularios" method="POST">
         <label for="nombre">Nombre y apellido</label> 
         <input type="text" id="nombre" name="nombre" required>
         <label for="ci">Documento</label>

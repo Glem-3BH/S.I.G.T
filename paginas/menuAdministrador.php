@@ -27,7 +27,7 @@ if(isset($_POST["cerrar"])){
 </head>
 <header>
         <nav class="navegador">
-            <div class="icono"><a class="navbar-brand" href="sigtindex.html"><img src="images/sigticon.png" alt="" class="icono"></a></div>
+            <div class="icono"><a class="navbar-brand" href="menuAdministrador.php?user=administrador"><img src="images/sigticon.png" alt="" class="icono"></a></div>
           <div class="btnNav">
             <div class="boton-3d">
               <div class="cara cara-frontal">COMPETIDOR</div>
@@ -38,7 +38,7 @@ if(isset($_POST["cerrar"])){
                 <a href="inscribir.php">INGRESAR COMPETIDOR</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="listakatas.html">VER KATAS</a>
+                <a href="listarKatas.php">VER KATAS</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -56,7 +56,10 @@ if(isset($_POST["cerrar"])){
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="juezTorneo.html">VER TORNEO EN CURSO</a>
+                <a href="verTorneos.php">VER TORNEOS</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="torneoEnCurso.php">TORNEO EN CURSO</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -67,13 +70,17 @@ if(isset($_POST["cerrar"])){
               <div class="cara cara-trasera">
                 <a href="#">CREAR TICKET</a>
               </div>
+              
             </div>
           </div>
+          <form action="menuAdministrador.php" method="POST">
+                <input class="nav-link" type="submit" name="cerrar" value="LOGOUT"></input>
+              </form>
         </nav>
       </header>
 <div class="contenedor">
     <div class="cajaGestion">
-        INGRESAR COMPETIDOR<br>
+        <h2>INGRESAR COMPETIDOR</h2>
         <a href="inscribir.php">
             <img src="images/person.svg" alt="Imagen 1">
         </a>
@@ -81,21 +88,21 @@ if(isset($_POST["cerrar"])){
     
     </div>
     <div class="cajaGestion">
-        NUEVO TORNEO<br>
+        <h2>NUEVO TORNEO</h2>
         <a href="crearTorneo.php">
             <img src="images/cup.svg" alt="Imagen 2">
         </a>
-        <p>Aquí podrá crear un nuevo torneo</p>
+        <p>Aquí podrá crear un <br> nuevo torneo</p>
     </div>
     <div class="cajaGestion">
-        INGRESAR ESCUELA<br>
+        <h2>INGRESAR ESCUELA</h2>
         <a href="ingresarEscuela.php">
             <img src="images/school.svg" alt="Imagen 3">
         </a>
-        <p>Aquí podrá inscribir a una nueva escuela</p>
+        <p>Aquí podrá inscribir a una <br> nueva escuela</p>
     </div>
     <div class="cajaGestion">
-        COMPARTIR PANTALLA<br>
+        <h2>COMPARTIR PANTALLA</h2>
         <a href="llamadoCompetidores.html">
             <img src="images/share.svg" alt="Imagen 4">
         </a>

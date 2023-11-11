@@ -94,7 +94,7 @@
             exit;
         }
         foreach ($insert as $row){
-            echo '<form action="actualizarEscuela.php" method="GET">
+            echo '<form action="actualizarEscuela.php" method="GET" class="formularios">
             <input type="hidden" name="id" value="'.$row['IdEsc'].'">
             <label >Nombre</label>
             <input type="text" name="nombre" value="'.$row['Nombre'].'">
