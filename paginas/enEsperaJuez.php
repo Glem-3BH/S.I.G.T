@@ -24,12 +24,14 @@ if(isset($_POST["cerrar"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Información de tanteador</title>
+    <link rel="icon" type="image/jpg" href="images/sigticon.png"/>
 </head>
 <body>
-    <h1>En espera</h1>
+    <h1>En espera...</h1>
 
-    <form action="estadoJuez.php">
+    <form action="estadoJuez.php" class="formulario2">
         <input hidden type="text" name="user" value="<?php echo $user ?>">
         <input type="submit" value="Puntuar">
     </form>

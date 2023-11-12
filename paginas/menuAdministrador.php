@@ -73,9 +73,9 @@ if(isset($_POST["cerrar"])){
               
             </div>
           </div>
-          <form action="menuAdministrador.php" method="POST">
-                <input class="nav-link" type="submit" name="cerrar" value="LOGOUT"></input>
-              </form>
+          <form action="menuAdministrador.php" method="POST" class="logout">
+                <input class="nav-link" type="submit" name="cerrar" value="LOGOUT"> - <?php echo $user?></input>
+          </form>
         </nav>
       </header>
 <div class="contenedor">

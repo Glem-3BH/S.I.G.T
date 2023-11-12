@@ -679,3 +679,68 @@ text-decoration: none;;
   .calificado{
     background-color: rgb(27, 209, 20);
   }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Esto asegura que el contenedor ocupe al menos el 100% de la altura de la ventana. */
+  }
+
+  .siguiente {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .siguiente a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .siguiente a:hover {
+    background-color: #45a049;
+  }
+
+  .logout {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .logout input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .logout input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .formulario2 {
+    text-align: center;
+    margin-top: 20vh; /* Ajusta según sea necesario */
+}
+
+.formulario2 input[type="submit"] {
+    padding: 50px 100px; /* Ajusta según sea necesario */
+    font-size: 1.5em; /* Ajusta según sea necesario */
+    background-color: #779c4cc5; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    cursor: pointer;
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.formulario2 input[type="submit"]:hover {
+    background-color: #2980b9; /* Color de fondo al pasar el ratón */
+}

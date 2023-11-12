@@ -13,7 +13,6 @@ class Conexion {
         try{
             $this->conect = new PDO($connectionString,$this->user,$this->password);
             $this->conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "<center><p style='color: green; display: inline-block; position: absolute; z-index: 1;'>Conexión estable</p></center>";
         }catch(Exception $e){
             $this->conect = 'Error de conexión';
             echo "ERROR: ".$e->getMessage();

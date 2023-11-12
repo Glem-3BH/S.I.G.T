@@ -278,8 +278,9 @@ class ListarCompetidores extends Conexion {
       echo "Ocurrio un error<br>";
       echo $ex->getMessage();
       exit;
-    }  
-    echo '<table border=1>';
+    }
+    
+    echo '<div class="tanteador"><table border=1>';
     echo '<tr><th>Cedula</th><th>Nombre</th><th>Puntaje</th></tr>';
     foreach ($insert as $row){
         echo '<tr>
@@ -288,7 +289,7 @@ class ListarCompetidores extends Conexion {
                 <td>'.$puntaje.'</td>';
         
     }
-    echo '</table>';
+    echo '</table></div>';
 
   }
 

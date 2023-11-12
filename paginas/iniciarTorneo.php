@@ -73,6 +73,8 @@ if(isset($_POST["cerrar"])){
       </header><br><br><br><br><br><br><br><br><br>
     
       <?php $listar = $objetoCompetidor->listarParaTorneo($idTorneo);?>
-      <a href="resultado2a3.php?id=<?php echo $idTorneo?>">Siguiente</a>
+      <div class="siguiente">
+        <a href="resultado2a3.php?id=<?php echo $idTorneo?>&user=administrador">Siguiente</a>
+      </div>
       <script src="js/js.js"></script>
 </html>

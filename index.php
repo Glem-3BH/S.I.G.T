@@ -24,12 +24,12 @@ if( isset($_POST["iniciar"])){
 	<div class="cajaLogin">
     <div class="formLogin">
       <img src="paginas/images/sigticon.png" alt="">
-      <form action="index.php" class="formLogin" method="post" onsubmit="return validateForm()">
+      <form action="index.php" class="formLogin" method="post">
         <label for="usuario">Usuario</label> 
         <input type="text" id="usuario" name="user" required>
         <label for="contraseña">Contraseña</label>
         <input type="password" id="contraseña" name="pass" required>
-        <p>La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.</p>
+      
         <input type="submit" value="Ingresar" name="iniciar">
         <div id="error-message"></div>
         <div id="loading-message"></div>
