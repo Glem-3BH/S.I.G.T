@@ -97,9 +97,9 @@
             echo '<form action="actualizarEscuela.php" method="GET" class="formularios">
             <input type="hidden" name="id" value="'.$row['IdEsc'].'">
             <label >Nombre</label>
-            <input type="text" name="nombre" value="'.$row['Nombre'].'">
+            <input type="text" name="nombre" value="'.$row['Nombre'].'" required>
             <label >Localidad</label>
-            <input type="text" name="localidad" value="'.$row['localidad'].'">
+            <input type="text" name="localidad" value="'.$row['localidad'].'" required>
             <input type="submit" name="Ingresar">
         </form>';
              

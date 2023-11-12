@@ -90,7 +90,7 @@ if($_GET){
             <option value="16/17" >16/17</option>
             <option value="+18" >+18</option>
           </select>
-          <input type="radio" id="M" name="sexo" value="M">
+          <input type="radio" id="M" name="sexo" value="M" checked>
           <label for="M">Masculino</label> 
           <input type="radio" id="F" name="sexo" value="F">
           <label for="F">Femenino</label>

@@ -58,7 +58,7 @@
             exit;
         }
         echo '<table border=1>';
-        echo '<tr><th>ID</th><th>Nombre</th><th>Fecha</th><th>Dirección</th><th>Categoria</th><th colspan="2">Acciones</th></tr>';
+        echo '<tr><th>ID</th><th>Nombre</th><th>Fecha</th><th>Dirección</th><th>Categoria</th><th>Genero</th><th colspan="2">Acciones</th></tr>';
         foreach ($insert as $row){
 
             echo '<tr>
@@ -67,6 +67,7 @@
                     <td>'.$row['Fecha'].'</td>
                     <td>'.$row['Dirección'].'</td>
                     <td>'.$row['Categoria'].'</td>
+                    <td>'.$row['Sexo'].'</td>
                     <td>
 
                     <a href="eliminarTorneo.php?id='.$row['IdTorneo'].'">Eliminar</a>
@@ -98,21 +99,27 @@
         }
         foreach ($insert as $row){
             echo '<form action="actualizarTorneo.php" method="GET">
-            <input type="hidden" name="id" value="'.$row['IdTorneo'].'">
+            <input type="hidden" name="id" value="'.$row['IdTorneo'].'" required>
             <label >Nombre</label>
-            <input type="text" name="nombre" value="'.$row['Nombre'].'">
+            <input type="text" name="nombre" value="'.$row['Nombre'].'" required>
             <label >Fecha</label>
-            <input type="date" name="fecha" value="'.$row['Fecha'].'">
+            <input type="date" name="fecha" value="'.$row['Fecha'].'" required>
             <label >Direccion</label>
-            <input type="text" name="direccion" value="'.$row['Dirección'].'">
+            <input type="text" name="direccion" value="'.$row['Dirección'].'" required>
             <label >Categoria</label>
-            <select name="categoria">
+            <select name="categoria" required>
                 <option value="12/13" >12/13</option>
                 <option value="12/13" >12/13</option>
                 <option value="14/15" >14/15</option>
                 <option value="16/17" >16/17</option>
                 <option value="+18" >+18</option>
             </select>
+            <div class="radio">
+                <input type="radio" id="F" name="sexo" value="F">
+                <label for="F">Femenino</label>
+                <input type="radio" id="M" name="sexo" value="M" checked>
+                <label for="M" >Masculino</label> 
+            </div>
             <input type="submit" name="Ingresar">
         </form>';
              
@@ -120,9 +127,9 @@
         
     }
 
-    public function setTorneo(string $idTorneo, string $nombre, string $fecha, string $direccion, string $categoria){
+    public function setTorneo(string $idTorneo, string $nombre, string $fecha, string $direccion, string $categoria, string $sexo){
 
-        $actualizar = "UPDATE torneo set Nombre=:nombre, Fecha=:fecha, Dirección=:direccion, Categoria=:categoria WHERE IdTorneo=:IdTorneo";
+        $actualizar = "UPDATE torneo set Nombre=:nombre, Fecha=:fecha, Dirección=:direccion, Categoria=:categoria, Sexo=:sexo WHERE IdTorneo=:IdTorneo";
 
         $stmt = $this->conexion->prepare($actualizar);
         $stmt->bindParam(':IdTorneo', $idTorneo, PDO::PARAM_INT);
@@ -130,6 +137,7 @@
         $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->bindParam(':direccion', $direccion, PDO::PARAM_STR);
         $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+        $stmt->bindParam(':sexo', $sexo, PDO::PARAM_STR);
         $stmt->execute();
 
     }

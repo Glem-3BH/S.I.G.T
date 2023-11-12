@@ -56,6 +56,9 @@ if(isset($_POST["cerrar"])){
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
+                <a href="crearTorneo.php">CREAR TORNEO</a>
+              </div>
+              <div class="cara cara-trasera">
                 <a href="verTorneos.php">VER TORNEOS</a>
               </div>
               <div class="cara cara-trasera">
@@ -80,14 +83,6 @@ if(isset($_POST["cerrar"])){
       </header>
 <div class="contenedor">
     <div class="cajaGestion">
-        <h2>INGRESAR COMPETIDOR</h2>
-        <a href="inscribir.php">
-            <img src="images/person.svg" alt="Imagen 1">
-        </a>
-        <p>Aquí podrá inscribir a un nuevo competidor</p>
-    
-    </div>
-    <div class="cajaGestion">
         <h2>NUEVO TORNEO</h2>
         <a href="crearTorneo.php">
             <img src="images/cup.svg" alt="Imagen 2">
@@ -100,6 +95,14 @@ if(isset($_POST["cerrar"])){
             <img src="images/school.svg" alt="Imagen 3">
         </a>
         <p>Aquí podrá inscribir a una <br> nueva escuela</p>
+    </div>
+    <div class="cajaGestion">
+        <h2>INGRESAR COMPETIDOR</h2>
+        <a href="inscribir.php">
+            <img src="images/person.svg" alt="Imagen 1">
+        </a>
+        <p>Aquí podrá inscribir a un nuevo competidor</p>
+    
     </div>
     <div class="cajaGestion">
         <h2>COMPARTIR PANTALLA</h2>

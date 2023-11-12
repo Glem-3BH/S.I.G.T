@@ -9,10 +9,11 @@ $nombre = $_GET['nombre'];
 $fecha = $_GET['fecha'];
 $direccion = $_GET['direccion'];
 $categoria = $_GET['categoria'];
+$sexo = $_GET['sexo'];
 
 
 
-$objetoTorneo->setTorneo($id, $nombre, $fecha, $direccion, $categoria);
+$objetoTorneo->setTorneo($id, $nombre, $fecha, $direccion, $categoria, $sexo);
 header("location: verTorneos.php");
 
 ?>

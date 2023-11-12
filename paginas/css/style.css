@@ -744,3 +744,26 @@ text-decoration: none;;
 .formulario2 input[type="submit"]:hover {
     background-color: #2980b9; /* Color de fondo al pasar el ratón */
 }
+
+.seleccionarKata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente */ /* Ajusta la altura para centrar verticalmente en toda la pantalla */
+    margin-top: 50px; /* Ajusta la distancia desde la parte superior según tus preferencias */
+}
+
+.seleccionarKata input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 33%;
+    /* Otros estilos que desees agregar */
+}
+
+.seleccionarKata input[type="submit"]:hover {
+    background-color: #45a049; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}

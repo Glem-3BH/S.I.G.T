@@ -39,10 +39,10 @@ if($verSiHay == true){
     $nombreEsc = $paraCalificar['NombreEscuela'];
 
     header('location: menuJuez.php?user='.$user.'&ide='.$ide.'&idtorneo='.$idtorneo.'&ci='.$ci.'&etapa='.$etapa.'&color='.$color.'&categoria='.$categoria.'&sexo='.$sexo.'&tipo='.$tipo.'&idkata='.$idkata.'&nombre='.$nombre.'&nombrekata='.$nombreKata.'&nombreesc='.$nombreEsc.'');
-    }else{
+    }
+}else{
         header('location: enEsperaJuez.php?user='.$user); 
     }
-}
 
 //header('location: enEsperaJuez.php?user='.$user);
 

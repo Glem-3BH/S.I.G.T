@@ -98,8 +98,8 @@ class ListarCompetidores extends Conexion {
                       <div class="radio">
                           <input type="radio" id="F" name="sexo" value="F">
                           <label for="F">Femenino</label>
-                          <input type="radio" id="M" name="sexo" value="M">
-                          <label for="M">Masculino</label> 
+                          <input type="radio" id="M" name="sexo" value="M" checked>
+                          <label for="M" >Masculino</label> 
                       </div>
                       <input type="hidden" name="estado" value="calificar">
                       <input type="submit" id="ingreso" value="actualizar" name="Actualizar"></input> 

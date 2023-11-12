@@ -100,18 +100,18 @@ if(isset($_POST["cerrar"])){
         <label for="fnac">Fecha de nacimiento</label>
         <input type="date" name="fnac" id="fecha" required>
         <div class="radio">
-          <select name="idE" id="escuela">
+          <select name="idE" id="escuela" required>
             <option value="" disabled selected>Seleccione escuela</option>
             <?php $listarEsc = $objetoEscuela->selectDeEscuelas();?>
           </select>
           
-          <select name="IdTorneo" id="torneo">Seleccione torneo
+          <select name="IdTorneo" id="torneo" required>Seleccione torneo
             <option value="" disabled selected>Seleecione torneo</option>
             <?php $listar = $objetoTorneo->selectDeTorneos();?>
           </select>
           <input type="radio" id="F" name="sexo" value="F">
           <label for="F">Femenino</label>
-          <input type="radio" id="M" name="sexo" value="M">
+          <input type="radio" id="M" name="sexo" value="M" checked>
           <label for="M">Masculino</label> 
         </div>
         <input type="hidden" name="estado" value="calificar">
@@ -120,17 +120,5 @@ if(isset($_POST["cerrar"])){
     </div>
     
   </div>
-   
-
-    <script>
-      // Obtenemos una referencia al botón
-      var boton = document.getElementById("ingreso");
-      
-      // Agregamos un evento click al botón
-      boton.addEventListener("click", function() {
-          // Mostramos un mensaje de respuesta
-          alert("Participante ingresado correctamente");
-      });
-  </script>
 </body>
 </html>
