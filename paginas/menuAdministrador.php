@@ -106,7 +106,7 @@ if(isset($_POST["cerrar"])){
     </div>
     <div class="cajaGestion">
         <h2>COMPARTIR PANTALLA</h2>
-        <a href="llamadoCompetidores.html">
+        <a href="pantallaPublico.php">
             <img src="images/share.svg" alt="Imagen 4">
         </a>
         <p>Aquí podrá compartir pantalla con el público</p>

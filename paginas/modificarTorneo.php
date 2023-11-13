@@ -33,7 +33,7 @@ $id = $_GET['id'];
                 <a href="inscribir.php">INGRESAR COMPETIDOR</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="listakatas.html">VER KATAS</a>
+                <a href="listarKatas.php">VER KATAS</a>
               </div>
             </div>
             <div class="boton-3d">
@@ -51,16 +51,13 @@ $id = $_GET['id'];
                 <a href="seleccionarTorneo.php">INICIAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="juezTorneo.html">TORNEO EN CURSO</a>
-              </div>
-            </div>
-            <div class="boton-3d">
-              <div class="cara cara-frontal">SOPORTE</div>
-              <div class="cara cara-trasera">
-                <a href="#">MANUAL DE USUARIO</a>
+                <a href="crearTorneo.php">CREAR TORNEO</a>
               </div>
               <div class="cara cara-trasera">
-                <a href="#">CREAR TICKET</a>
+                <a href="verTorneos.php">VER TORNEOS</a>
+              </div>
+              <div class="cara cara-trasera">
+                <a href="torneoEnCurso.php">TORNEO EN CURSO</a>
               </div>
             </div>
           </div>
